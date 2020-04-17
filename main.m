@@ -22,9 +22,12 @@ if size(bbox, 1) > 1
     end
 end
 
+% bede to wyswietlal aby bylo wiadomo czy twarz podlega rozpoznawaniu czy
+% tez nie.
 IFace = insertObjectAnnotation(my_image,'rectangle',bbox,'twarz');   
 figure
 imshow(IFace)
 title('Detected face');
 
 %% 
+
