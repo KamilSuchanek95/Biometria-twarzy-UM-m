@@ -11,12 +11,18 @@ xml_face_detector = vision.CascadeObjectDetector('haarcascade_frontalface_defaul
 %%
 bbox = detect_face(face_detector, my_image);
 
-% bede to wyswietlal aby bylo wiadomo czy twarz podlega rozpoznawaniu czy
-% tez nie.
+% bede to wyswietlal aby bylo wiadomo czy twarz podlega rozpoznawaniu czy tez nie.
 IFace = insertObjectAnnotation(my_image,'rectangle',bbox,'twarz');   
 figure
 imshow(IFace)
 title('Detected face');
 
 %% 
+ROI = Cut_the_ROI(my_image, bbox);
+
+[features, visualization] = extractHOGFeatures(ROI);
+
+
+
+
 
