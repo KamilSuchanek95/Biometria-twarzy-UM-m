@@ -9,18 +9,7 @@ upper_detector = vision.CascadeObjectDetector('ClassificationModel','UpperBody')
 xml_face_detector = vision.CascadeObjectDetector('haarcascade_frontalface_default.xml');
 
 %%
-
-bbox = face_detector(my_image);
-% zwraca [x y wysokosc szerokosc] gdzie wys=szer, a x,y to lewy gorny rog.
-if size(bbox, 1) > 1
-    max_size = max(bbox(:,4));
-    for i = 1:size(bbox, 1)
-        if bbox(i,4) == max_size
-            bbox = bbox(i, :);
-            break;
-        end
-    end
-end
+bbox = detect_face(face_detector, my_image);
 
 % bede to wyswietlal aby bylo wiadomo czy twarz podlega rozpoznawaniu czy
 % tez nie.
@@ -29,7 +18,5 @@ figure
 imshow(IFace)
 title('Detected face');
 
-figure
-imshow(my_image(bbox(2):bbox(2)+bbox(4),bbox(1):bbox(1)+bbox(3)))
 %% 
 
