@@ -1,6 +1,7 @@
 function [training_data] = create_training_data_set()
 %create_training_data_set
 %   This work only with imageLabeler objects.
+%   return struct of data for training SVM.
 
 %% script for creating training data .mat 
 % clc; clear; close all;

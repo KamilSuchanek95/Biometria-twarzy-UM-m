@@ -1,6 +1,6 @@
 function [img] = Get_snapshot()
 %Get_snapshot
-%   -
+%   return single image from webcam
 
 try
     CAM = webcam(1);    % object of camera (first from $webcamlist)
