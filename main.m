@@ -24,11 +24,9 @@ title('Detected face');
 % [features, visualization] = extractHOGFeatures(ROI);
 
 %%
-Y1= [];
-for i=1:length(training_data.kamil) Y1(i,1:14) ='Kamil Suchanek'; end
-Y2= [];
-for i=1:length(training_data.michal) Y2(i,1:17) ='Michal Letniowski'; end
-Md1 = fitcecoc([training_data.kamil;training_data.michal], [Y1;Y2]);
+tr = create_training_data_set;
+%%
+Md1 = fitcecoc(cell2mat([tr.kamil.X;tr.michal.X]), [tr.kamil.Y;tr.michal.Y]);
 
 
 
