@@ -3,6 +3,28 @@ clc; clear; close all;
 %% add functions to path
 addpath('functions');
 
+%% mean of size
+% kamil = load('Labeler - faces\kamil.mat');
+% sum3 = 0; sum4 = 0; len = height(kamil.gTruth.LabelData);
+% for i = 1:len
+%     bbox = table2array(kamil.gTruth.LabelData(i,kamil.gTruth.LabelDefinitions.Name{1}));
+%     sum3 = sum3 + bbox{1}(3);
+%     sum4 = sum4 + bbox{1}(4);
+% end
+% mean3=sum3/len;
+% mean4=sum4/len;
+%% mean of size
+% michal = load('Labeler - faces\michal.mat');
+% sum3 = 0; sum4 = 0; len = height(michal.gTruth.LabelData);
+% for i = 1:len
+%     bbox = table2array(michal.gTruth.LabelData(i,michal.gTruth.LabelDefinitions.Name{1}));
+%     sum3 = sum3 + bbox{1}(3);
+%     sum4 = sum4 + bbox{1}(4);
+% end
+% mean3=sum3/len;
+% mean4=sum4/len;
+% => 256x256
+
 %% KAMIL DATASET
 kamil = load('Labeler - faces\kamil.mat');
 training_data.kamil = {};
