@@ -1,4 +1,6 @@
 clear; close all; clc;
+%% Add functions to path.
+addpath('functions');
 %% Get a picture from webcam
 
 my_image = Get_snapshot();
@@ -17,12 +19,11 @@ figure
 imshow(IFace)
 title('Detected face');
 
-%% 
-ROI = Cut_the_ROI(my_image, bbox);
+%% przeniesione do create_training_data_set.m
+% ROI = Cut_the_ROI(my_image, bbox);
+% [features, visualization] = extractHOGFeatures(ROI);
 
-[features, visualization] = extractHOGFeatures(ROI);
-
-
+%%
 
 
 
