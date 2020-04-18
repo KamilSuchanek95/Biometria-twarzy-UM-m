@@ -2,7 +2,7 @@ function [training_data] = create_training_data_set()
 %create_training_data_set
 %   This work only with imageLabeler objects. (only my computer!)
 %   return struct of data for training SVM.
-subjects = {'kamil','michal','edyta'};
+subjects = {'kamil','michal','edyta','kolegaAsi'};
 for name = subjects
     o= load('Labeler - faces\' + string(name{1}) + '.mat');
     training_data.(string(name{1})).X = {};
@@ -15,7 +15,7 @@ for name = subjects
         training_data.(string(name{1})).X{end+1, 1} = extractHOGFeatures(ROI);
     end
     training_data.(string(name{1})).Y = {};
-    for i=1:length(training_data.(string(name{1})).X) training_data.(string(name{1})).Y{i,1} =string(name{1}); end
+    for i=1:length(training_data.(string(name{1})).X) training_data.(string(name{1})).Y{i,1} = name{1}; end
 end
 
 %% save to file
