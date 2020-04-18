@@ -12,7 +12,7 @@ for i = 1:length(src) % for all images
     % get a bbox [x y h w]
     bbox = table2array(kamil.gTruth.LabelData(i,kamil.gTruth.LabelDefinitions.Name{1}));
     ROI = Cut_the_ROI(image, bbox{1});
-    training_data.kamil{1,end+1} = extractHOGFeatures(ROI);
+    training_data.kamil{end+1, 1} = extractHOGFeatures(ROI);
 end
 
 %% MICHAL DATASET
@@ -24,7 +24,7 @@ for i = 1:length(src)
     bbox = table2array(michal.gTruth.LabelData(i,michal.gTruth.LabelDefinitions.Name{1}));
     
     ROI = Cut_the_ROI(image, bbox{1});
-    training_data.michal{1,end+1} = extractHOGFeatures(ROI);
+    training_data.michal{end+1, 1} = extractHOGFeatures(ROI);
 end
 
 %% save to file
