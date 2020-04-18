@@ -3,7 +3,7 @@ clear; close all; clc;
 
 my_image = Get_snapshot();
 
-% example detectors
+%% example detectors
 face_detector = vision.CascadeObjectDetector;%('ClassificationModel','FrontalFaceLBP');
 upper_detector = vision.CascadeObjectDetector('ClassificationModel','UpperBody');
 xml_face_detector = vision.CascadeObjectDetector('haarcascade_frontalface_default.xml');
@@ -29,5 +29,7 @@ figure
 imshow(IFace)
 title('Detected face');
 
+figure
+imshow(my_image(bbox(2):bbox(2)+bbox(4),bbox(1):bbox(1)+bbox(3)))
 %% 
 
