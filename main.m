@@ -25,3 +25,23 @@ Mdl = fitcecoc(cell2mat(train_data), train_label);
 clc;
 path = 'C:\Users\kamis\Desktop\biometria_twarzy\test_images\';
 test_images(Mdl, face_detector, path)
+
+%% example output:
+% test test1_bartek.jpg, detected as => kamil
+% =====
+% test test1_basia.jpg, detected as => basia
+% =====
+% test test1_edyta.JPG, detected as => basia
+% =====
+% test test1_kamil.jpg, detected as => basia
+% =====
+% test test1_kolegaAsi.jpg, detected as => basia
+% =====
+% test test1_michal.jpg, detected as => michal
+% =====
+% test test1_nieznany1.jpg, detected as => basia
+% =====
+% test test1_nieznany2.jpg, detected as => basia
+% =====
+% test test1_nieznany3.jpeg, detected as => kamil
+% =====
