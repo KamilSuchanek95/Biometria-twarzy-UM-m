@@ -7,28 +7,21 @@ addpath('functions');
 face_detector = vision.CascadeObjectDetector;%('ClassificationModel','FrontalFaceLBP');
 %% ROI for recognition
 %ROI = detect_face(my_image, face_detector);
-%% create model
-tr = create_training_data_set;
-%%
-Mdl = fitcecoc(cell2mat(...
-[tr.kamil.X;tr.michal.X;tr.edyta.X;tr.kolegaAsi.X]),...
-[tr.kamil.Y;tr.michal.Y;tr.edyta.Y;tr.kolegaAsi.Y]);
+%% create training data
+subjects = {'kolegaAsi','michal','edyta','basia','bartek', 'kamil'};
 
-%% testing
-
-subjects = {'kamil','michal','edyta','kolegaAsi'}
+% tr = create_training_data_with_frames_from_imageLabeler(subjects);
+tr = load('training_data\training_data_19-Apr-2020_kam-mic-ed-kol-bas-bar.mat')
+%% 
+clc;
+train_data = {}; train_label = {};
 for name = subjects
-    load('C:\Users\kamis\Desktop\test_images\test_image_' + string(name{1}) + '.mat');
-    disp('test ' + string(name{1}) + ':        ')
-    ROI = detect_face(img, face_detector);
-    label = predict(Mdl,extractHOGFeatures(ROI));
-    disp(string(label{1}) + '')
-    disp('=====')
+    train_data  = [train_data; tr.(string(name)).X];
+    train_label = [train_label; tr.(string(name)).Y];
 end
-%%
-load('C:\Users\kamis\Desktop\test_images\test_image_edyta.mat');
-disp('test edyta:        ')
-ROI = detect_face(img, face_detector);
-label = predict(Mdl,extractHOGFeatures(ROI));
-disp(string(label{1}) + '')
-
+%% train model
+Mdl = fitcecoc(cell2mat(train_data), train_label);
+%% test model
+clc;
+path = 'C:\Users\kamis\Desktop\biometria_twarzy\test_images\';
+test_images(Mdl, face_detector, path)
