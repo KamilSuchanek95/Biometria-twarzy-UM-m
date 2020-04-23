@@ -97,4 +97,13 @@ clear; close all; clc;
 %%
 image = Get_snapshot();
 
-
+%subjects = {'kolegaAsi','michal','edyta','basia','bartek', 'kamil'};
+% tr = create_training_data_with_frames_from_imageLabeler(subjects);
+%tr = load('training_data\training_data_19-Apr-2020_kam-mic-ed-kol-bas-bar.mat')
+%% 
+% clc;
+% train_data = {}; train_label = {};
+% for name = subjects
+%     train_data  = [train_data; tr.(string(name)).X];
+%     train_label = [train_label; tr.(string(name)).Y];
+% end
