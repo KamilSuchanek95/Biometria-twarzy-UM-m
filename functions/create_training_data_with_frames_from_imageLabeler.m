@@ -1,4 +1,4 @@
-function [training_data] = create_training_data_set(subjects)
+function [training_data] = create_training_data_with_frames_from_imageLabeler(subjects)
 %create_training_data_set
 %   This work only with imageLabeler objects. (only my computer!)
 %   example: subjects = {'kolegaAsi','michal','edyta'};

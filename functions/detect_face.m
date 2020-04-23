@@ -29,6 +29,7 @@ if ~isnan(bbox)
 else
     disp('no faces detected');
     ROI = NaN;
+    imshow(img);
 end
 end
 
