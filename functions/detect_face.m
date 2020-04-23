@@ -1,7 +1,8 @@
-function [ROI, err] = detect_face(img, face_detector)
+function [ROI, err] = detect_face(img, face_detector, info)
 %detect_face(face_detector, img) detect it and ignore more than one.
 %   -face_detector: detector object
 %   -img: snapshot with face
+%   -info: 0/1 do not inform / inform about no face detection
 bbox = [];
 try
     bbox = face_detector(img);
@@ -27,9 +28,9 @@ if ~isnan(bbox)
     ROI = Cut_the_ROI(img, bbox);
     ROI = imresize(ROI,[256 256]);
 else
-    disp('no faces detected');
+    if info disp('no faces detected'); end
     ROI = NaN;
-    imshow(img);
+    % imshow(img);
 end
 end
 
