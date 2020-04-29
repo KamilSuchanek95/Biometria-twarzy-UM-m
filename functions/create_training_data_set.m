@@ -2,31 +2,31 @@ function [TR] = create_training_data_set(path_images, face_detector)
 %create_training_data_set(path_images)
 %   path_images: path with folders s0, s2... with training images
 %   return struct of data for training SVM. (TR) TR.X TR.Y
-%%
 clc
 TR.X = {}; TR.Y = {};
-d = dir(path_images); d = d(3:end);
+folders = dir(path_images); folders = folders(3:end);
 number = 0;
-for s = 1:numel(d) % loop for s0, s1...
-    dd = dir(path_images + "/" + d(s).name); dd = dd(3:end);
-    for i = 1:numel(dd) % loop for images...
-        img = imread(path_images + "/" + d(s).name + "/" + dd(i).name);
+for n_of_folder = 1:numel(folders) % loop for s0, s1...
+    dd = dir(path_images + "/" + folders(n_of_folder).name); dd = dd(3:end);
+    for n_of_image = 1:numel(dd) % loop for images...
+        img = imread(path_images + "/" + folders(n_of_folder).name + "/" + dd(n_of_image).name);
         ROI = detect_face(img, face_detector, 0); %, d(name).name + "/" + dd(i).name);
         if ~isnan(ROI) % fprintf('image: %s, SUCCESS!\n', d(s).name + "/" + dd(i).name);
-        else fprintf('image: %s, failure! <=====\n', d(s).name + "/" + dd(i).name); end
+        else fprintf('image: %s, failure! <=====\n', folders(n_of_folder).name + "/" + dd(n_of_image).name); end
         if ~isnan(ROI)
             number = number + 1;
+            % RGB is not a matrix, we want grayscale, which is a matrix.
+            if ~ismatrix(ROI) ROI = rgb2gray(ROI); end
             TR.X = [TR.X ; extractHOGFeatures(ROI)];
-            TR.Y = [TR.Y ; string(d(s).name)];
+            TR.Y = [TR.Y ; string(folders(n_of_folder).name)];
         else % Roi = NaN-=w
             continue
         end
     end
     percent = 100 * (number/numel(dd));
-    fprintf('the percentage of images used from %s is:%.2f%%  (or %i out of %i)\n', d(s).name, percent,number,numel(dd));
+    fprintf('the percentage of images used from %s is:%.2f%%  (or %i out of %i)\n', folders(n_of_folder).name, percent,number,numel(dd));
     number = 0;
 end
-%%
 end
 
 %% example output on Command Window:
