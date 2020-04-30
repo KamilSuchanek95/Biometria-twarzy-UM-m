@@ -61,9 +61,9 @@ function [scores, stats] = test_images(Mdl, face_detector, path_of_test_images)
         stats.miss{end + 1, 1} = (numel(test_images)-TP-cort)/(numel(test_images)-cort);
         stats.FN{end + 1, 1} = numel(test_images)-TP-cort;
         stats.TP{end + 1, 1} = TP; 
-        stats.label{end + 1, 1} = string(test_folders(n_of_folder).name);
+        stats.label{end + 1, 1} = test_folders(n_of_folder).name;
         % disp TP FN sensitivity and miss rate values.
-        disp(stats.label{end, 1} + " TP = " + TP + " FN = " + string(stats.FN{end, 1}) +...
+        disp(string(stats.label{end, 1}) + " TP = " + TP + " FN = " + string(stats.FN{end, 1}) +...
             " sensitivity = " + string(stats.sen{end, 1}) + " miss rate = " + string(stats.miss{end, 1}))
     end
 end
