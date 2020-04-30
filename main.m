@@ -13,5 +13,10 @@ TR = create_training_data_set('training_images', face_detector);
 Mdl = fitcecoc(cell2mat(TR.X), TR.Y);
 %% test model
 path_test = 'test_images/';
-score = test_images(Mdl, face_detector, path_test);
+[score, stats] = test_images(Mdl, face_detector, path_test);
+
+%% 
+
+
+
 

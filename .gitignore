@@ -4,3 +4,5 @@
 *.png
 
 trained_svm_s0-s22.mat
+
+training_data_s0-s22.mat

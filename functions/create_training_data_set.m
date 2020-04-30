@@ -1,8 +1,10 @@
 function [TR] = create_training_data_set(path_images, face_detector)
 %create_training_data_set(path_images)
+%input:
 %   path_images: path with folders s0, s2... with training images
-%   return struct of data for training SVM. (TR) TR.X TR.Y
-clc
+%return:
+%   TR: struct of data for training SVM. (TR) TR.X TR.Y
+
 TR.X = {}; TR.Y = {};
 folders = dir(path_images); folders = folders(3:end);
 number = 0;
