@@ -2,3 +2,5 @@
 *.jpg
 *.jpeg
 *.png
+
+trained_svm_s0-s22.mat
