@@ -1,4 +1,4 @@
-function [scores, stats] = test_images(Mdl, face_detector, path_of_test_images)
+function [scores, stats, labels] = test_images(Mdl, face_detector, path_of_test_images)
 %test_images test model
 %input:
 %   Mdl: trained model
@@ -14,7 +14,7 @@ function [scores, stats] = test_images(Mdl, face_detector, path_of_test_images)
 %        .label = {"s0", "s1", ...}
 %        .sen = {sensitivity % for s0, ...}
 %        .miss = {miss rate % for s0, ...}
-
+    labels = {};
     % init output
     stats.TP = {}; stats.FN = {}; stats.sen = {}; stats.miss = {}; stats.label = {};
     scores.success = {}; scores.score = {};
@@ -44,6 +44,7 @@ function [scores, stats] = test_images(Mdl, face_detector, path_of_test_images)
             
             % predicted label and scores (max(score) points to predicted label)
             [label, score] = predict(Mdl, extractHOGFeatures(ROI)); 
+            labels{end + 1, 1} = char(label);
             % if predicted label is correct then...
             if numel(strfind(string(test_folders(n_of_folder).name) + " ",string(label) + " ")) > 0
                 TP = TP + 1;  % increase true positive value

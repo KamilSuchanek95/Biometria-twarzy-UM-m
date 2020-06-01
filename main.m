@@ -9,7 +9,7 @@ TR = create_training_data_set('training_images', face_detector);
 Mdl = fitcecoc(cell2mat(TR.X), TR.Y);
 %% test model
 path_test = 'test_images/';
-[score, stats] = test_images(Mdl, face_detector, path_test);
+[score, stats, labels] = test_images(Mdl, face_detector, path_test);
 
 
 %% Get a picture from webcam
@@ -18,3 +18,5 @@ path_test = 'test_images/';
 % ROI = detect_face(my_image, face_detector, 1);
 %% druga czesc sekcji recognize my_image
 % label = predict(Mdl, extractHOGFeatures(ROI));
+
+

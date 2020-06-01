@@ -35,9 +35,25 @@ hold(axes2,'on');
 
 er = errorbar(Xlabels, [mean(a),mean(b),mean(c),mean(d)]*100, ...
     [mean(a)-min(a),mean(b)-min(b),mean(c)-min(c),mean(c)-min(d)]*100, ...
-    [max(a)-mean(a),max(b)-mean(b),max(c)-mean(c),max(d)-mean(d)]*100)
+    [max(a)-mean(a),max(b)-mean(b),max(c)-mean(c),max(d)-mean(d)]*100);
 er.Color = [0 0 0];                            
-er.LineStyle = 'none';  
+er.LineStyle = 'none';
+%% confusion matrix
+% ustalenie, ktore etykiety s¹ spodziewane (zgodne z kolejnoscia testowania w test_images.m)
+t = dir('test_images');
+t = t(3:end);
+grouphat = {};
+for i = 1:numel(t)
+    for k = 1:(numel(dir(string(t(i).folder) + "/" + string(t(i).name))) - 2)
+        grouphat{end + 1, 1} = char(t(i).name);
+    end
+end
+% obliczenie i narysowanie
+figure3 = figure();
+C = confusionmat(labels, grouphat);
+g = confusionchart(C);
+etykiety = unique(grouphat);
+
 %%
 % figure3 = figure;
 % grp = categorical();
